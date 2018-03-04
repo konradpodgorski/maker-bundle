@@ -106,7 +106,13 @@ final class Str
 
     public static function getNamespace(string $fullClassName): string
     {
-        return substr($fullClassName, 0, strrpos($fullClassName, '\\'));
+        $namespace = substr($fullClassName, 0, strrpos($fullClassName, '\\'));
+
+        if ('\\' === $namespace[0]) {
+            $namespace = substr($namespace, 1);
+        }
+
+        return $namespace;
     }
 
     public static function asFilePath(string $value): string
